@@ -1,35 +1,16 @@
 <template>
   <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        satomi-v2
-      </h1>
-      <h2 class="subtitle">
-        My well-made Nuxt.js project
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <img :src="this.imgUrl" />
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
+  data() {
+    return {
+      imgUrl:
+        'https://www.hbo.com/content/dam/hbodata/documentaries/mommy-dead-and-dearest/mommy-dead-and-dearest-1920.jpg'
+    }
   }
 }
 </script>
