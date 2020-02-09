@@ -1,21 +1,29 @@
 <template>
-  <div class="container">
-    <img :src="this.imgUrl" />
-  </div>
+  <section>
+    <Nav />
+    <div
+      :style="{ backgroundImage: 'url(' + imgUrl + ')' }"
+      class="container bg-img"
+    ></div>
+  </section>
 </template>
 
 <script>
+import Nav from '@/components/global/Nav'
 export default {
+  components: {
+    Nav
+  },
   data() {
     return {
       imgUrl:
-        'https://www.hbo.com/content/dam/hbodata/documentaries/mommy-dead-and-dearest/mommy-dead-and-dearest-1920.jpg'
+        'https://www.thesun.co.uk/wp-content/uploads/2016/11/nintchdbpict000281024550.jpg?w=4000'
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -23,27 +31,10 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  &.bg-img {
+    background-position: 50% 50%;
+    background-size: contain;
+    background-attachment: scroll;
+  }
 }
 </style>
