@@ -34,7 +34,11 @@ export default {
   &.bg-img {
     background-position: 50% 50%;
     background-size: contain;
+    height: 100vh;
     background-attachment: scroll;
+    @media only screen and (max-width: 912px) {
+      background-size: cover;
+    }
   }
 }
 </style>
