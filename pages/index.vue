@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="has-bg">
     <Nav />
     <div
       :style="{ backgroundImage: 'url(' + imgUrl + ')' }"

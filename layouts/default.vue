@@ -1,10 +1,58 @@
 <template>
   <div>
-    <nuxt />
+    <nuxt :style="dynamicHue" />
   </div>
 </template>
 
-<style>
+<script>
+export default {
+  data() {
+    return {
+      clientX: 0,
+      clientY: 0,
+      windowWidth: 0,
+      windowHeight: 0,
+      hoverActive: true
+    }
+  },
+  computed: {
+    colorHue() {
+      const hue = (360 / this.windowWidth) * this.clientX
+      return parseInt(hue, 10)
+    },
+    dynamicHue() {
+      return {
+        filter: `hue-rotate(${this.colorHue + 'deg'})`
+      }
+    }
+  },
+  mounted() {
+    window.addEventListener('resize', this.handleResize)
+    document
+      .getElementsByTagName('body')[0]
+      .addEventListener('mousemove', this.updateMouseLocation)
+    this.handleResize()
+  },
+  destroy() {
+    window.removeEventListener('resize', this.handleResize)
+  },
+  methods: {
+    updateMouseLocation(e) {
+      const { clientX, clientY } = e
+      if (this.hoverActive) {
+        this.clientX = clientX
+        this.clientY = clientY
+      }
+    },
+    handleResize() {
+      this.windowWidth = window.innerWidth
+      this.windowHeight = window.innerHeight
+    }
+  }
+}
+</script>
+
+<style lang="scss">
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -22,34 +70,5 @@ html {
 *:after {
   box-sizing: border-box;
   margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
 }
 </style>
